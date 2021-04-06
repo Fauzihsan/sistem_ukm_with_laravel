@@ -7,7 +7,22 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <div class="container">
+        <div class="row justify-content-header">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">{{ __('Dashboard')}}</div>
+                    <div class="card-body">
+                        @if($user->roles_id==1)
+                            Anda Login sebagai Admin
+                        @else
+                            Anda Login sebagai User                            
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('css')

@@ -24,7 +24,6 @@
                                     <th>Kategori</th>
                                     <th>Merk</th>
                                     <th>Harga</th>
-                                    <th>Stok</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -35,19 +34,19 @@
                                         <td>{{$no++}}</td>
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->qty}}</td>
-                                        <td>{{$product->brands_id}}</td>
-                                        <td>{{$product->categories_id}}</td>
+                                        <td><a href="/admin/categories/">{{$product->categorie->name}}</a></td>
+                                        <td><a href="/admin/brands/">{{$product->brand->name}}</a></td>
                                         <td>
                                             @if($product->photo != null)
                                                 <img src="{{asset('storage/photo_product/'.$product->photo)}}" width="100px">
                                             @else
-                                                [Gambar Tidak Tersedia]
+                                                [Foto Produk Kosong]
                                             @endif
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basuc Example">
-                                                <button type="button" id="btn-edit-product" class="btn btn-success" data-toggle="modal" data-target="#editProductModal" data-id="{{$product->id}}">Edit</button>
-                                                <button type="button" id="btn-delete-product" class="btn btn-danger" data-toggle="modal" data-target="#deleteProductModal" data-id="{{$product->id}}" data-name="{{$product->name}}" data-cover="{{$product->photo}}">Hapus</button>
+                                                <button type="button" id="btn-edit-product" class="btn btn-success" data-toggle="modal" data-target="#editProductModal" data-id="{{$product->id}}"data-categorie="{{$product->categorie->name}}">Edit</button>
+                                                <button type="button" id="btn-delete-product" class="btn btn-danger" data-toggle="modal" data-target="#deleteProductModal" data-id="{{$product->id}}" data-name="{{$product->name}}"  data-photo="{{$product->photo}}">Hapus</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -74,16 +73,16 @@
                     @csrf 
                         <div class="form-group">
                             <label for="name">Nama Barang</label>
-                            <input type="text" class="form-control" name="name" id="name" required>
+                            <input type="text" class="form-control" name="name" id="name" required autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="qty">Jumlah</label>
-                            <input type="text" class="form-control" name="qty" id="qty" required>
+                            <input type="number" min="0" class="form-control" name="qty" id="qty" required autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="categories">Kategori</label>
-                            <select name="categories_id" class="form-control" id="categories">
-                                <option selected disabled>Pilih Kategori : </option>
+                            <select name="categories_id" class="form-control" id="categories" required autocomplete="off">
+                                <option value="" selected disabled>Pilih Kategori : </option>
                             @foreach($categories as $categorie)
                                     <option value="{{$categorie->id}}">{{$categorie->name}}</option>
                             @endforeach
@@ -91,8 +90,8 @@
                         </div>
                         <div class="form-group">
                             <label for="brands">Merk</label>
-                            <select name="brands_id" class="form-control" id="brands">
-                                <option selected disabled>Pilih Brand : </option>
+                            <select name="brands_id" class="form-control" id="brands" required>
+                                <option value="" selected disabled>Pilih Brand : </option>
                             @foreach($brands as $brand)
                                     <option value="{{$brand->id}}">{{$brand->name}}</option>
                             @endforeach
@@ -128,35 +127,45 @@
                     @method('PATCH')
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="edit-judul">Judul Buku</label>
-                                <input type="text" class="form-control" name="judul" id="edit-judul" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-penulis">Penulis</label>
-                                <input type="text" class="form-control" name="penulis" id="edit-penulis" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-tahun">Tahun</label>
-                                <input type="year" class="form-control" name="tahun" id="edit-tahun" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-penerbit">Penerbit</label>
-                                <input type="text" class="form-control" name="penerbit" id="edit-penerbit" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="name">Nama Barang</label>
+                            <input type="text" class="form-control" name="name" id="edit-name" required autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="qty">Jumlah</label>
+                            <input type="number" min="0" class="form-control" name="qty" id="edit-qty" required autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="categories">Kategori</label>
+                            <select name="categories_id" class="form-control" id="edit-categories" required autocomplete="off">
+                                <option value="" selected disabled>Pilih Kategori : </option>
+                            @foreach($categories as $categorie)
+                                    <option value="{{$categorie->id}}">{{$categorie->name}}</option>
+                            @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="brands">Merk</label>
+                            <select name="brands_id" class="form-control" id="edit-brands" required>
+                                <option value="" selected disabled>Pilih Brand : </option>
+                            @foreach($brands as $brand)
+                                    <option value="{{$brand->id}}">{{$brand->name}}</option>
+                            @endforeach
+                            </select>
+                        </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group" id="image-area"></div>
                             <div class="form-group">
-                                <label for="edit-cover">Cover</label>
-                                <input type="file" class="form-control" name="cover" id="edit-cover">
+                                <label for="edit-photo">Foto Produk</label>
+                                <input type="file" class="form-control" name="photo" id="edit-photo">
                             </div>
                         </div>
                     </div>
             </div>
             <div class="modal-footer">
                 <input type="hidden" name="id" id="edit-id">
-                <input type="hidden" name="old_cover" id="edit-old-cover">
+                <input type="hidden" name="old_photo" id="edit-old-photo">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-success">Update</button>
                 </form>
@@ -175,7 +184,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                Apakah anda yakin akan menghapus data <strong><span id="caption"></span></strong>?
+                Apakah anda yakin akan menghapus Produk <strong><span id="caption"></span></strong>?
                 <form method="post" action="{{ route('admin.product.delete') }}" enctype="multipart/form-data">
                     @csrf 
                     @method('DELETE')
@@ -200,26 +209,26 @@
 @section('js')
     <script>
         $(function(){
-            $(document).on('click', '#btn-edit-buku', function(){
+            $(document).on('click', '#btn-edit-product', function(){
                 let id = $(this).data('id');
 
                 $('#image-area').empty();
 
                 $.ajax({
                     type: "get",
-                    url : baseurl+'/admin/ajaxadmin/dataBuku/'+id,
+                    url : baseurl+'/admin/ajaxadmin/dataProduct/'+id,
                     dataType : 'json',
                     success : function(res){
-                        $('#edit-judul').val(res.judul);
-                        $('#edit-penerbit').val(res.penerbit);
-                        $('#edit-penulis').val(res.penulis);
-                        $('#edit-tahun').val(res.tahun);
+                        $('#edit-name').val(res.name);
+                        $('#edit-qty').val(res.qty);
+                        $('#edit-categories').val(res.categories_id);
+                        $('#edit-brands').val(res.brands_id);
                         $('#edit-id').val(res.id);
-                        $('#edit-old-cover').val(res.old-cover);
+                        $('#edit-old-photo').val(res.old-photo);
 
-                        if(res.cover !== null){
+                        if(res.photo !== null){
                             $('#image-area').append(
-                                "<img src='"+baseurl+"/storage/cover_buku/"+res.cover+"' width='200px'>"
+                                "<img src='"+baseurl+"/storage/photo_product/"+res.photo+"' width='200px'>"
                             );
                         }
                         else{
@@ -235,7 +244,9 @@
         $(document).on('click','#btn-delete-product', function(){
             let id = $(this).data('id');
             let name = $(this).data('name');
+            let photo = $(this).data('photo');
 
+            $('#delete-old-photo').val(photo);
             $('#delete-id').val(id);
             $('#caption').text(name);
         })

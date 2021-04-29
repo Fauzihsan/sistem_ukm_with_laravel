@@ -36,32 +36,35 @@ Route::get('profile', function(){
 Route::middleware('is_admin')->prefix('admin')->group(function(){
     Route::get('home',[App\Http\Controllers\AdminController::class,'index'])->name('admin.home');
     Route::get('books',[App\Http\Controllers\AdminController::class,'books'])->name('admin.books');
-    Route::get('products',[App\Http\Controllers\AdminController::class,'products'])->name('admin.products');
-    Route::get('categories',[App\Http\Controllers\AdminController::class,'categories'])->name('admin.categories');
-    Route::get('brands',[App\Http\Controllers\AdminController::class,'brands'])->name('admin.brands');
+    Route::get('products',[App\Http\Controllers\ProductController::class,'products'])->name('admin.products');
+    Route::get('categories',[App\Http\Controllers\CategorieController::class,'categories'])->name('admin.categories');
+    Route::get('brands',[App\Http\Controllers\BrandController::class,'brands'])->name('admin.brands');
     Route::post('books',[App\Http\Controllers\AdminController::class, 'submit_book'])->name('admin.book.submit');
-    Route::post('products',[App\Http\Controllers\AdminController::class, 'submit_product'])->name('admin.product.submit');
-    Route::post('categories',[App\Http\Controllers\AdminController::class, 'submit_categorie'])->name('admin.categorie.submit');
-    Route::post('brands',[App\Http\Controllers\AdminController::class, 'submit_brand'])->name('admin.brand.submit');
+    Route::post('products',[App\Http\Controllers\ProductController::class, 'submit_product'])->name('admin.product.submit');
+    Route::post('categories',[App\Http\Controllers\CategorieController::class, 'submit_categorie'])->name('admin.categorie.submit');
+    Route::post('brands',[App\Http\Controllers\BrandController::class, 'submit_brand'])->name('admin.brand.submit');
     Route::patch('books/update',[App\Http\Controllers\AdminController::class, 'update_book'])->name('admin.book.update');
-    Route::patch('products/update',[App\Http\Controllers\AdminController::class, 'update_product'])->name('admin.product.update');
-    Route::patch('categories/update',[App\Http\Controllers\AdminController::class, 'update_categorie'])->name('admin.categorie.update');
-    Route::patch('brands/update',[App\Http\Controllers\AdminController::class, 'update_brand'])->name('admin.brand.update');
+    Route::patch('products/update',[App\Http\Controllers\ProductController::class, 'update_product'])->name('admin.product.update');
+    Route::patch('categories/update',[App\Http\Controllers\CategorieController::class, 'update_categorie'])->name('admin.categorie.update');
+    Route::patch('brands/update',[App\Http\Controllers\BrandController::class, 'update_brand'])->name('admin.brand.update');
     Route::delete('books/delete',[App\Http\Controllers\AdminController::class,'delete_book'])->name('admin.book.delete');
-    Route::delete('products/delete',[App\Http\Controllers\AdminController::class,'delete_product'])->name('admin.product.delete');
-    Route::delete('categories/delete',[App\Http\Controllers\AdminController::class,'delete_categorie'])->name('admin.categorie.delete');
-    Route::delete('brands/delete',[App\Http\Controllers\AdminController::class,'delete_brand'])->name('admin.brand.delete');
+    Route::delete('products/delete',[App\Http\Controllers\ProductController::class,'delete_product'])->name('admin.product.delete');
+    Route::delete('categories/delete',[App\Http\Controllers\CategorieController::class,'delete_categorie'])->name('admin.categorie.delete');
+    Route::delete('brands/delete',[App\Http\Controllers\BrandController::class,'delete_brand'])->name('admin.brand.delete');
 });
 
 Route::get('admin/ajaxadmin/dataBuku/{id}',
 [App\Http\Controllers\AdminController::class,'getDataBuku']);
 
+Route::get('admin/ajaxadmin/dataProduct/{id}',
+[App\Http\Controllers\ProductController::class,'getDataProduct']);
+
 Route::get('admin/ajaxadmin/dataCategorie/{id}',
-[App\Http\Controllers\AdminController::class,'getDataCategorie']);
+[App\Http\Controllers\CategorieController::class,'getDataCategorie']);
 
 
 Route::get('admin/ajaxadmin/dataBrand/{id}',
-[App\Http\Controllers\AdminController::class,'getDataBrand']);
+[App\Http\Controllers\BrandController::class,'getDataBrand']);
 
 Route::get('admin/print_books',
 [App\Http\Controllers\AdminController::class,'print_books'])->name('admin.print.books')->middleware('is_admin');

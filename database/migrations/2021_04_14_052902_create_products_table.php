@@ -17,9 +17,9 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('qty');
-            $table->foreignId('brands_id')->constrained();
-            $table->foreignId('categories_id')->constrained();
-            $table->string('photo');
+            $table->foreignId('brands_id')->constrained()->onDelete('cascade');
+            $table->foreignId('categories_id')->constrained()->onDelete('cascade');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

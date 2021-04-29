@@ -61,11 +61,11 @@
                     @csrf 
                         <div class="form-group">
                             <label for="name">Nama Brand</label>
-                            <input type="text" class="form-control" name="name" id="name" required>
+                            <input type="text" class="form-control" name="name" id="name" required autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="description">Ketarangan</label>
-                            <input type="text" class="form-control" name="description" id="description" required>
+                            <input type="text" class="form-control" name="description" id="description" required autocomplete="off">
                         </div>
             </div>
             <div class="modal-footer">
@@ -95,11 +95,11 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="edit-name">Nama Brand</label>
-                                <input type="text" class="form-control" name="name" id="edit-name" required>
+                                <input type="text" class="form-control" name="name" id="edit-name" required autocomplete="off">
                             </div>
                             <div class="form-group">
                                 <label for="edit-description">Keterangan</label>
-                                <input type="text" class="form-control" name="description" id="edit-description" required>
+                                <input type="text" class="form-control" name="description" id="edit-description" required autocomplete="off">
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                Apakah anda yakin akan menghapus <strong><span id="caption"></span></strong>?
+                Apakah anda yakin akan menghapus Brand <strong><span id="caption"></span></strong>?
+                <br>
+                <hr>
+                <strong style="color:red">DANGER! </strong> : Seluruh Produk dengan Brands ini akan ikut terhapus.
+                <hr>
                 <form method="post" action="{{ route('admin.brand.delete') }}" enctype="multipart/form-data">
                     @csrf 
                     @method('DELETE')

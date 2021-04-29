@@ -17,6 +17,14 @@ class Product extends Model
         'photo'
     ];
 
+    public function categorie(){
+        return $this->belongsTo('App\Models\Categorie', 'categories_id');
+    }
+
+    public function brand(){
+        return $this->belongsTo('App\Models\Brand', 'brands_id');
+    }
+
     public static function getDataProducts(){
         $products = Product::all();
         $products_filter = [];

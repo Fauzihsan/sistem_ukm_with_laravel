@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Pengelolaan Buku')
+@section('title', 'Pengelolaan Barang')
 
 @section('content_header')
-    <h1>Pengelolaan Buku</h1>
+    <h1>Pengelolaan Barang</h1>
 @stop
 
 @section('content')
@@ -11,47 +11,43 @@
         <div class="row justify-content-header">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{ __('Pengelolaan Buku')}}</div>
+                    <div class="card-header">{{ __('Pengelolaan Barang')}}</div>
                     <div class="card-body">
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#tambahBukuModal"><i class="fa fa-plus"></i> Tambah Data</button>
-                        <a href="{{route('admin.print.books')}}" target="_blank" class="btn btn-secondary"><i class="fa fa-print"></i> Cetak PDF</a>
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <a href="{{route('admin.book.export')}}" class="btn btn-info" target="_blank">Export</a>
-                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#importDataModal">Import</button>
-                        </div>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#tambahProductModal"><i class="fa fa-plus"></i> Tambah Barang</button>
                         <hr>
                         <table id="table-data" class="table table-borderer" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>NO</th>
-                                    <th>JUDUL</th>
-                                    <th>PENULIS</th>
-                                    <th>TAHUN</th>
-                                    <th>PENERBIT</th>
-                                    <th>COVER</th>
-                                    <th>AKSI</th>
+                                    <th>No</th>
+                                    <th>Nama</th>
+                                    <th>Jumlah</th>
+                                    <th>Kategori</th>
+                                    <th>Merk</th>
+                                    <th>Harga</th>
+                                    <th>Stok</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php $no=1; @endphp
-                                @foreach($books as $book)
+                                @foreach($products as $product)
                                     <tr>
                                         <td>{{$no++}}</td>
-                                        <td>{{$book->judul}}</td>
-                                        <td>{{$book->penulis}}</td>
-                                        <td>{{$book->tahun}}</td>
-                                        <td>{{$book->penerbit}}</td>
+                                        <td>{{$product->name}}</td>
+                                        <td>{{$product->qty}}</td>
+                                        <td>{{$product->brands_id}}</td>
+                                        <td>{{$product->categories_id}}</td>
                                         <td>
-                                            @if($book->cover != null)
-                                                <img src="{{asset('storage/cover_buku/'.$book->cover)}}" width="100px">
+                                            @if($product->photo != null)
+                                                <img src="{{asset('storage/photo_product/'.$product->photo)}}" width="100px">
                                             @else
                                                 [Gambar Tidak Tersedia]
                                             @endif
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basuc Example">
-                                                <button type="button" id="btn-edit-buku" class="btn btn-success" data-toggle="modal" data-target="#editBukuModal" data-id="{{$book->id}}">Edit</button>
-                                                <button type="button" id="btn-delete-buku" class="btn btn-danger" data-toggle="modal" data-target="#deleteBukuModal" data-id="{{$book->id}}" data-cover="{{$book->cover}}">Hapus</button>
+                                                <button type="button" id="btn-edit-product" class="btn btn-success" data-toggle="modal" data-target="#editProductModal" data-id="{{$product->id}}">Edit</button>
+                                                <button type="button" id="btn-delete-product" class="btn btn-danger" data-toggle="modal" data-target="#deleteProductModal" data-id="{{$product->id}}" data-name="{{$product->name}}" data-cover="{{$product->photo}}">Hapus</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -64,41 +60,51 @@
         </div>
     </div>
 
-    <div class="modal fade" id="tambahBukuModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="tambahProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Buku</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Product</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{{ route('admin.book.submit') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('admin.product.submit') }}" enctype="multipart/form-data">
                     @csrf 
                         <div class="form-group">
-                            <label for="judul">Judul Buku</label>
-                            <input type="text" class="form-control" name="judul" id="judul" required>
+                            <label for="name">Nama Barang</label>
+                            <input type="text" class="form-control" name="name" id="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="penulis">Penulis</label>
-                            <input type="text" class="form-control" name="penulis" id="penulis" required>
+                            <label for="qty">Jumlah</label>
+                            <input type="text" class="form-control" name="qty" id="qty" required>
                         </div>
                         <div class="form-group">
-                            <label for="tahun">Tahun</label>
-                            <input type="year" class="form-control" name="tahun" id="tahun" required>
+                            <label for="categories">Kategori</label>
+                            <select name="categories_id" class="form-control" id="categories">
+                                <option selected disabled>Pilih Kategori : </option>
+                            @foreach($categories as $categorie)
+                                    <option value="{{$categorie->id}}">{{$categorie->name}}</option>
+                            @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="penerbit">Penerbit</label>
-                            <input type="text" class="form-control" name="penerbit" id="penerbit" required>
+                            <label for="brands">Merk</label>
+                            <select name="brands_id" class="form-control" id="brands">
+                                <option selected disabled>Pilih Brand : </option>
+                            @foreach($brands as $brand)
+                                    <option value="{{$brand->id}}">{{$brand->name}}</option>
+                            @endforeach
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="cover">Cover</label>
-                            <input type="file" class="form-control" name="cover" id="cover">
+                            <label for="photo">Photo</label>
+                            <input type="file" class="form-control" name="photo" id="photo">
                         </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" >Tutup</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-primary">Kirim</button>
                 
                 </form>
@@ -107,17 +113,17 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editBukuModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Data Buku</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Data Product</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{{ route('admin.book.update') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('admin.product.update') }}" enctype="multipart/form-data">
                     @csrf 
                     @method('PATCH')
                     <div class="row">
@@ -159,53 +165,26 @@
         </div>
     </div>
 
-    <div class="modal fade" id="deleteBukuModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Hapus Data Buku</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Hapus Data Product</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
                 </button>
             </div>
             <div class="modal-body">
-                Apakah anda yakin akan menghapus data tersebut?
-                <form method="post" action="{{ route('admin.book.delete') }}" enctype="multipart/form-data">
+                Apakah anda yakin akan menghapus data <strong><span id="caption"></span></strong>?
+                <form method="post" action="{{ route('admin.product.delete') }}" enctype="multipart/form-data">
                     @csrf 
                     @method('DELETE')
             </div>
             <div class="modal-footer">
                 <input type="hidden" name="id" id="delete-id">
-                <input type="hidden" name="old_cover" id="delete-old-cover">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <input type="hidden" name="old_photo" id="delete-old-photo">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-success">Hapus</button>
-                </form>
-            </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="importDataModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Import Data</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="{{ route('admin.book.import') }}" enctype="multipart/form-data">
-                    @csrf 
-                        <div class="form-group">
-                            <label for="importData">Upload File</label>
-                            <input type="file" class="form-control" name="file">
-                        </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="submit" class="btn btn-primary">Import Data</button>
-                
                 </form>
             </div>
             </div>
@@ -253,12 +232,12 @@
     </script>
 
     <script>
-        $(document).on('click','#btn-delete-buku', function(){
+        $(document).on('click','#btn-delete-product', function(){
             let id = $(this).data('id');
-            let cover = $(this).data('cover');
+            let name = $(this).data('name');
 
             $('#delete-id').val(id);
-            $('#delete-id-cover').val(id-cover);
+            $('#caption').text(name);
         })
     </script>
 @stop

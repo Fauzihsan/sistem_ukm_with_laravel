@@ -247,6 +247,24 @@ return [
             'icon'        => 'fas fa-fw fa-book',
             'can'         => 'isAdmin',
         ],
+        [
+            'text'        => 'Product',
+            'url'         => 'admin/products',
+            'icon'        => 'fas fa-fw fa-suitcase',
+            'can'         => 'isAdmin',
+        ],
+        [
+            'text'        => 'Categorie',
+            'url'         => 'admin/categories',
+            'icon'        => 'fas fa-fw fa-list',
+            'can'         => 'isAdmin',
+        ],
+        [
+            'text'        => 'Brands',
+            'url'         => 'admin/brands',
+            'icon'        => 'fas fa-fw fa-cart-plus',
+            'can'         => 'isAdmin',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

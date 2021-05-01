@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Role;
 
 
 class User extends Authenticatable
@@ -20,10 +21,15 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
         'roles_id',
     ];
+
+    public function role(){
+        return $this->belongsTo('App\Models\role', 'roles_id');
+    }
 
     /**
      * The attributes that should be hidden for arrays.

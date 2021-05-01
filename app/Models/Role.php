@@ -13,4 +13,16 @@ class Role extends Model
         'id',
         'name',
     ];
+
+    public static function getDataRoles(){
+        $roles = Role::all();
+        $roles_filter = [];
+        $no = 1;
+
+        for($i=0; $i<$roles->count();$i++){
+            $roles_filter[$i]['no'] = $no++;
+            $roles_filter[$i]['name'] = $roles[$i]->name;
+        }
+        return $roles_filter;
+    }
 }

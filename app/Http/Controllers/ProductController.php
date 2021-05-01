@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
 use App\Models\Categorie;
 use App\Models\Brand;
+use App\Models\LaporanBarangMasuk;
 
 class ProductController extends Controller
 {
@@ -32,8 +33,10 @@ class ProductController extends Controller
 
         $product->name = $req->get('name');
         $product->qty = $req->get('qty');
+        $product->harga = $req->get('harga');
         $product->brands_id = $req->get('brands_id');
         $product->categories_id = $req->get('categories_id');
+        $product->users_id = $req->get('users_id');
 
         if($req->hasFile('photo')){
             $extension = $req->file('photo')->extension();
@@ -61,8 +64,10 @@ class ProductController extends Controller
 
         $product->name = $req->get('name');
         $product->qty = $req->get('qty');
+        $product->harga = $req->get('harga');
         $product->categories_id = $req->get('categories_id');
         $product->brands_id = $req->get('brands_id');
+        $product->users_id = $req->get('users_id');
 
         if($req->hasFile('photo')){
             $extension = $req->file('photo')->extension();

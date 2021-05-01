@@ -15,8 +15,8 @@
                     <div class="card-body">
                         <button class="btn btn-primary" data-toggle="modal" data-target="#tambahBrandModal"><i class="fa fa-plus"></i> Tambah Brands</button>
                         <hr>
-                        <table id="table-data" class="table table-borderer" style="width:100%">
-                            <thead>
+                        <table id="table-data" class="table table-striped table-bordered" style="width:100%">
+                            <thead align="center">
                                 <tr>
                                     <th>NO</th>
                                     <th>NAMA</th>
@@ -24,7 +24,7 @@
                                     <th>AKSI</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody align="center">
                                 @php $no=1; @endphp
                                 @foreach($brands as $brand)
                                     <tr>

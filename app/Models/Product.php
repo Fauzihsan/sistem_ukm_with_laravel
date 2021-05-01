@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Product extends Model
 {
@@ -12,6 +13,7 @@ class Product extends Model
     protected $fillable = [
         'name',
         'qty',
+        'harga',
         'brands_id',
         'categories_id',
         'photo'
@@ -34,6 +36,7 @@ class Product extends Model
             $products_filter[$i]['no'] = $no++;
             $products_filter[$i]['name'] = $products[$i]->name;
             $products_filter[$i]['qty'] = $products[$i]->qty;
+            $products_filter[$i]['harga'] = $products[$i]->harga;
             $products_filter[$i]['brands_id'] = $products[$i]->brands_id;
             $products_filter[$i]['categories_id'] = $products[$i]->categories_id;
             $products_filter[$i]['photo'] = $products[$i]->photo;

@@ -17,11 +17,15 @@ class CreateRolesSeeder extends Seeder
         $role = [
             [
                 'id' => '1',
-                'name' => 'isUser',
+                'name' => 'Super Admin',
             ],
             [
                 'id' => '2',
-                'name' => 'isAdmin',
+                'name' => 'Admin',
+            ],
+            [
+                'id' => '3',
+                'name' => 'Staff',
             ]
         ];
         foreach($role as $key => $value){

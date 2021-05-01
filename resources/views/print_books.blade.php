@@ -7,8 +7,8 @@
     <h1 class="text-center">Data Buku</h1>
     <p class="text-center">Laporan Data Buku Tahun 2021</p>
     <br>
-        <table id="table-data" class="table table-borderer" style="width:100%">
-            <thead>
+        <table id="table-data" class="table table-striped table-bordered" style="width:100%">
+            <thead align="center">
                                 <tr>
                                     <th>NO</th>
                                     <th>JUDUL</th>
@@ -18,7 +18,7 @@
                                     <th>COVER</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody align="center">
                                 @php $no=1; @endphp
                                 @foreach($books as $book)
                                     <tr>

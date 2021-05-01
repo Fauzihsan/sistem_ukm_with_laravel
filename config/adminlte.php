@@ -248,22 +248,50 @@ return [
             'can'         => 'isAdmin',
         ],
         [
+            'text'        => 'User',
+            'url'         => 'admin/users',
+            'icon'        => 'fas fa-fw fa-user',
+            'can'         => 'isSuperAdmin',
+        ],
+        [
             'text'        => 'Product',
             'url'         => 'admin/products',
             'icon'        => 'fas fa-fw fa-suitcase',
-            'can'         => 'isAdmin',
+            'can'         => ['isSuperAdmin','isAdmin'],
+
         ],
         [
             'text'        => 'Categorie',
             'url'         => 'admin/categories',
             'icon'        => 'fas fa-fw fa-list',
-            'can'         => 'isAdmin',
+            'can'         => ['isSuperAdmin','isAdmin'],
         ],
         [
             'text'        => 'Brands',
             'url'         => 'admin/brands',
             'icon'        => 'fas fa-fw fa-cart-plus',
-            'can'         => 'isAdmin',
+            'can'         => ['isSuperAdmin','isAdmin'],
+        ],
+        [
+            'text'    => 'Laporan',
+            'icon'    => 'fas fa-fw fa-file',
+            'submenu' => [
+                [
+                    'text' => 'Laporan Barang Masuk',
+                    'icon'    => 'fas fa-fw fa-download',
+                    'url'  => 'admin/laporanBarangMasuks',
+                ],
+                [
+                    'text' => 'Laporan Barang Keluar',
+                    'icon'    => 'fas fa-fw fa-upload',
+                    'url'  => 'admin/laporanBarangKeluars',
+                ],
+            ],
+        ],
+        [
+            'text'        => 'Transaksi',
+            'url'         => 'admin/transactions',
+            'icon'        => 'fas fa-fw fa-dollar-sign',
         ],
         ['header' => 'account_settings'],
         [

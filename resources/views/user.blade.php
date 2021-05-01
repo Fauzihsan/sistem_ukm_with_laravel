@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Pengelolaan Barang')
+@section('title', 'User')
 
 @section('content_header')
-    <h1>Pengelolaan Barang</h1>
+    <h1>User</h1>
 @stop
 
 @section('content')
@@ -11,44 +11,42 @@
         <div class="row justify-content-header">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{ __('Pengelolaan Barang')}}</div>
+                    <div class="card-header">{{ __('User')}}</div>
                     <div class="card-body">
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#tambahProductModal"><i class="fa fa-plus"></i> Tambah Barang</button>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#tambahUserModal"><i class="fa fa-plus"></i> Tambah User</button>
                         <hr>
                         <table id="table-data" class="table table-striped table-bordered" style="width:100%">
-                            <thead align="center">
+                            <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>Stok</th>
-                                    <th>Harga</th>
-                                    <th>Kategori</th>
-                                    <th>Merk</th>
                                     <th>Foto</th>
+                                    <th>Nama</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                    <th>Role</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody align="center">
+                            <tbody>
                                 @php $no=1; @endphp
-                                @foreach($products as $product)
-                                    <tr>
-                                        <td>{{$no++}}</td>
-                                        <td>{{$product->name}}</td>
-                                        <td>{{$product->qty}}</td>
-                                        <td>{{$product->harga}}</td>
-                                        <td><a href="/admin/categories/">{{$product->categorie->name}}</a></td>
-                                        <td><a href="/admin/brands/">{{$product->brand->name}}</a></td>
-                                        <td>
-                                            @if($product->photo != null)
-                                                <img src="{{asset('storage/photo_product/'.$product->photo)}}" width="100px">
+                                @foreach($users as $user)
+                                    <tr><td>
+                                            @if($user->photo != null)
+                                                <img src="{{asset('storage/photo_user/'.$user->photo)}}" width="100px">
                                             @else
-                                                [Foto Produk Kosong]
+                                                [Foto User Kosong]
                                             @endif
                                         </td>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->username}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>{{$user->password}}</td>
+                                        <td>{{$user->role->name}}</td>
+                                        
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basuc Example">
-                                                <button type="button" id="btn-edit-product" class="btn btn-success" data-toggle="modal" data-target="#editProductModal" data-id="{{$product->id}}"data-categorie="{{$product->categorie->name}}">Edit</button>
-                                                <button type="button" id="btn-delete-product" class="btn btn-danger" data-toggle="modal" data-target="#deleteProductModal" data-id="{{$product->id}}" data-name="{{$product->name}}"  data-photo="{{$product->photo}}">Hapus</button>
+                                                <button type="button" id="btn-edit-user" class="btn btn-success" data-toggle="modal" data-target="#editUserModal" data-id="{{$user->id}}">Edit</button>
+                                                <button type="button" id="btn-delete-user" class="btn btn-danger" data-toggle="modal" data-target="#deleteUserModal" data-id="{{$user->id}}" data-name="{{$user->name}}"  data-photo="{{$user->photo}}">Hapus</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -61,45 +59,40 @@
         </div>
     </div>
 
-    <div class="modal fade" id="tambahProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="tambahUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Product</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Data User</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{{ route('admin.product.submit') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('admin.user.submit') }}" enctype="multipart/form-data">
                     @csrf 
                         <div class="form-group">
-                            <label for="name">Nama Barang</label>
+                            <label for="name">Nama</label>
                             <input type="text" class="form-control" name="name" id="name" required autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="qty">Stok</label>
-                            <input type="number" min="0" class="form-control" name="qty" id="qty" required autocomplete="off">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" name="username" id="username" required autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="harga">Harga</label>
-                            <input type="number" min="0" class="form-control" name="harga" id="harga" required autocomplete="off">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" name="email" id="email" required autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="categories">Kategori</label>
-                            <select name="categories_id" class="form-control" id="categories" required autocomplete="off">
+                            <label for="password">Password</label>
+                            <input type="text" class="form-control" name="password" id="password" required autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="roles">Role</label>
+                            <select name="roles_id" class="form-control" id="roles" required autocomplete="off">
                                 <option value="" selected disabled>Pilih Kategori : </option>
-                            @foreach($categories as $categorie)
-                                    <option value="{{$categorie->id}}">{{$categorie->name}}</option>
-                            @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="brands">Merk</label>
-                            <select name="brands_id" class="form-control" id="brands" required>
-                                <option value="" selected disabled>Pilih Brand : </option>
-                            @foreach($brands as $brand)
-                                    <option value="{{$brand->id}}">{{$brand->name}}</option>
+                            @foreach($roles as $role)
+                                    <option value="{{$role->id}}">{{$role->name}}</option>
                             @endforeach
                             </select>
                         </div>
@@ -109,7 +102,6 @@
                         </div>
             </div>
             <div class="modal-footer">
-                <input type="hidden" name="users_id" value="{{$user->id}}">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-primary">Kirim</button>
                 
@@ -119,7 +111,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -129,38 +121,33 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{{ route('admin.product.update') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ route('admin.user.update') }}" enctype="multipart/form-data">
                     @csrf 
                     @method('PATCH')
                     <div class="row">
                         <div class="col-md-6">
                         <div class="form-group">
-                            <label for="name">Nama Barang</label>
+                            <label for="name">Nama</label>
                             <input type="text" class="form-control" name="name" id="edit-name" required autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="qty">Stok</label>
-                            <input type="number" min="0" class="form-control" name="qty" id="edit-qty" required autocomplete="off">
+                            <label for="username">Username</label>
+                            <input type="text" class="form-control" name="username" id="edit-username" required autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="harga">Harga</label>
-                            <input type="number" min="0" class="form-control" name="harga" id="edit-harga" required autocomplete="off">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" name="email" id="edit-email" required autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="categories">Kategori</label>
-                            <select name="categories_id" class="form-control" id="edit-categories" required autocomplete="off">
+                            <label for="password">Password</label>
+                            <input type="text" class="form-control" name="password" id="edit-password" required autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="roles">Role</label>
+                            <select name="roles_id" class="form-control" id="edit-roles" required autocomplete="off">
                                 <option value="" selected disabled>Pilih Kategori : </option>
-                            @foreach($categories as $categorie)
-                                    <option value="{{$categorie->id}}">{{$categorie->name}}</option>
-                            @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="brands">Merk</label>
-                            <select name="brands_id" class="form-control" id="edit-brands" required>
-                                <option value="" selected disabled>Pilih Brand : </option>
-                            @foreach($brands as $brand)
-                                    <option value="{{$brand->id}}">{{$brand->name}}</option>
+                            @foreach($roles as $role)
+                                    <option value="{{$role->id}}">{{$role->name}}</option>
                             @endforeach
                             </select>
                         </div>
@@ -168,14 +155,13 @@
                         <div class="col-md-6">
                             <div class="form-group" id="image-area"></div>
                             <div class="form-group">
-                                <label for="edit-photo">Foto Produk</label>
-                                <input type="file" class="form-control" name="photo" id="edit-photo">
+                                <label for="photo">Photo</label>
+                                <input type="file" class="form-control" name="photo" id="photo">
                             </div>
                         </div>
                     </div>
             </div>
             <div class="modal-footer">
-                <input type="hidden" name="users_id" value="{{$user->id}}">
                 <input type="hidden" name="id" id="edit-id">
                 <input type="hidden" name="old_photo" id="edit-old-photo">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -186,18 +172,18 @@
         </div>
     </div>
 
-    <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Hapus Data Product</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Hapus Data User</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
                 </button>
             </div>
             <div class="modal-body">
-                Apakah anda yakin akan menghapus Produk <strong><span id="caption"></span></strong>?
-                <form method="post" action="{{ route('admin.product.delete') }}" enctype="multipart/form-data">
+                Apakah anda yakin akan menghapus User <strong><span id="caption"></span></strong>?
+                <form method="post" action="{{ route('admin.user.delete') }}" enctype="multipart/form-data">
                     @csrf 
                     @method('DELETE')
             </div>
@@ -221,28 +207,27 @@
 @section('js')
     <script>
         $(function(){
-            $(document).on('click', '#btn-edit-product', function(){
+            $(document).on('click', '#btn-edit-user', function(){
                 let id = $(this).data('id');
 
                 $('#image-area').empty();
 
                 $.ajax({
                     type: "get",
-                    url : baseurl+'/admin/ajaxadmin/dataProduct/'+id,
+                    url : baseurl+'/admin/ajaxadmin/dataUser/'+id,
                     dataType : 'json',
                     success : function(res){
                         $('#edit-name').val(res.name);
-                        $('#edit-qty').val(res.qty);
-                        $('#edit-harga').val(res.harga);
-                        $('#edit-categories').val(res.categories_id);
-                        $('#edit-brands').val(res.brands_id);
-                        $('#edit-users').val(res.users_id);
+                        $('#edit-username').val(res.username);
+                        $('#edit-email').val(res.email);
+                        $('#edit-password').val(res.password);
+                        $('#edit-roles').val(res.roles);
                         $('#edit-id').val(res.id);
                         $('#edit-old-photo').val(res.old-photo);
 
                         if(res.photo !== null){
                             $('#image-area').append(
-                                "<img src='"+baseurl+"/storage/photo_product/"+res.photo+"' width='200px'>"
+                                "<img src='"+baseurl+"/storage/photo_user/"+res.photo+"' width='200px'>"
                             );
                         }
                         else{
@@ -255,7 +240,7 @@
     </script>
 
     <script>
-        $(document).on('click','#btn-delete-product', function(){
+        $(document).on('click','#btn-delete-user', function(){
             let id = $(this).data('id');
             let name = $(this).data('name');
             let photo = $(this).data('photo');

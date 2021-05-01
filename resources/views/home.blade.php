@@ -14,9 +14,11 @@
                     <div class="card-header">{{ __('Dashboard')}}</div>
                     <div class="card-body">
                         @if($user->roles_id==1)
+                            Anda Login sebagai Super Admin
+                        @elseif($user->roles_id == 2)
                             Anda Login sebagai Admin
                         @else
-                            Anda Login sebagai User                            
+                            Anda Login sebagai Staff                            
                         @endif
                     </div>
                 </div>

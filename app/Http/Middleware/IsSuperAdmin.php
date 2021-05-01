@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facedas\Auth;
 
-class IsAdmin
+class IsSuperAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,14 +17,10 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->roles_id == 2){
+        if(auth()->user()->roles_id == 1){
             return $next($request);
         }
-        else if(auth()->user()->roles_id == 1){
-            return $next($request);
-        }
-        else{
-            return redirect('home')->with('error','Anda tidak memiliki akses sebagai admin');
-        }
+
+        return redirect('home')->with('error','Anda tidak memiliki akses sebagai SUper Admin');
     }
 }

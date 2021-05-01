@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facedas\Auth;
 
-class isUser
+class IsUser
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,14 @@ class isUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->roles_id == 2){
+        if(auth()->user()->roles_id == 3){
             return $next($request);
         }
-
-        return redirect('home')->with('error','Anda tidak memiliki akses sebagai admin');
+        else if(auth()->user()->roles_id == 1){
+            return $next($request);
+        }
+        else{
+            return redirect('home')->with('error','Anda login sebagai staff');
+        }
     }
 }

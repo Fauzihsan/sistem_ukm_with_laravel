@@ -9,10 +9,6 @@ class LaporanBarangMasuk extends Model
 {
     public $table = "laporanBarangMasuks";
     use HasFactory;
-    protected $fillable = [
-        'name',
-        'qty',
-    ];
 
     public function oleh(){
         return $this->belongsTo('App\Models\User', 'users_id');

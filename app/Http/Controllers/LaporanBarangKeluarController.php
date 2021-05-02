@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use PDF;
-use App\Models\Product;
 use App\Models\LaporanBarangKeluar;
 
 class LaporanBarangKeluarController extends Controller

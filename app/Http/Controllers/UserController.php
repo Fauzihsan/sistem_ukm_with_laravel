@@ -61,9 +61,7 @@ class UserController extends Controller
 
         $user->name = $req->get('name');
         $user->username = $req->get('username');
-        $user->email = $req->get('email');
-        $newPassword = $req->get('password');
-        $user->password = bcrypt($newPassword); 
+        $user->email = $req->get('email'); 
         $user->roles_id = $req->get('roles_id');
 
         if($req->hasFile('photo')){
@@ -79,7 +77,7 @@ class UserController extends Controller
             $user->photo = $filename;
         }
 
-        $product->save();
+        $user->save();
         $notification = array(
             'message' => 'Data User berhasil diubah',
             'alert-type' => 'success'

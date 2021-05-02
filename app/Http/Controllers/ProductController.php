@@ -21,7 +21,6 @@ class ProductController extends Controller
         return view('product', compact('user','products','categories','brands'));
     }
 
-    
     public function getDataProduct($id){
         $product = Product::find($id);
 

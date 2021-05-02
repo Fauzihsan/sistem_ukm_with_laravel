@@ -9,16 +9,6 @@ use App\Models\User;
 class Product extends Model
 {
     use HasFactory;
-    
-    protected $fillable = [
-        'name',
-        'qty',
-        'harga',
-        'brands_id',
-        'categories_id',
-        'photo'
-    ];
-
     public function categorie(){
         return $this->belongsTo('App\Models\Categorie', 'categories_id');
     }

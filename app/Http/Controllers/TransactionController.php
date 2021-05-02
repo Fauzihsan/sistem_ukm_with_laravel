@@ -22,14 +22,6 @@ class TransactionController extends Controller
         return view('transaction', compact('user','products'));
     }    
 
-    public function payments(){
-        $user = Auth::user();
-        $products = Product::all();
-        $categorie = Categorie::all();
-        $transaction = Transaction::all();
-        return view('payment', compact('user','products','categorie', 'transaction'));
-    }
-
     public function kategori(){
         return $this->belongsTo('App\Models\Categorie', 'categories_id');
     }
@@ -49,23 +41,4 @@ class TransactionController extends Controller
         $transaction->save();
         return redirect()->route('admin.transactions');
     }
-
-    public function submit_payment(Request $req){
-        $transaction = Transaction::find($req->get('id'));
-
-        $transaction->pembayaran = $req->get('pembayaran');
-        $total = $transaction->total;
-        
-        $pembayaran = $req->get('pembayaran');
-        $kembalian = $pembayaran - $total;
-        $transaction->kembalian = $kembalian;
-
-        $transaction->save();
-        $notification = array(
-            'message' => 'Transaksi Berhasil',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('admin.payments')->with($notification);
-    }
-
 }

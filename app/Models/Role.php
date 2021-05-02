@@ -9,11 +9,6 @@ class Role extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'id',
-        'name',
-    ];
-
     public static function getDataRoles(){
         $roles = Role::all();
         $roles_filter = [];

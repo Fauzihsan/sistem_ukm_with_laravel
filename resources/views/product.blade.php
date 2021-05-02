@@ -110,7 +110,7 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" name="users_id" value="{{$user->id}}">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-primary">Kirim</button>
                 
                 </form>
@@ -178,7 +178,7 @@
                 <input type="hidden" name="users_id" value="{{$user->id}}">
                 <input type="hidden" name="id" id="edit-id">
                 <input type="hidden" name="old_photo" id="edit-old-photo">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-success">Update</button>
                 </form>
             </div>
@@ -204,8 +204,8 @@
             <div class="modal-footer">
                 <input type="hidden" name="id" id="delete-id">
                 <input type="hidden" name="old_photo" id="delete-old-photo">
+                <button type="submit" class="btn btn-danger">Hapus</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-success">Hapus</button>
                 </form>
             </div>
             </div>

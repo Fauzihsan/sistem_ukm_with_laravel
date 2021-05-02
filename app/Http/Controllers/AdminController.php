@@ -7,10 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use PDF;
-use App\Models\Categorie;
-use App\Models\Brand;
-use App\Models\Product;
-use App\Models\Book;
+// use App\Models\Book;
 use App\Exports\BooksExport;
 use App\Imports\BooksImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -27,108 +24,108 @@ class AdminController extends Controller
         return view('home', compact('user'));
     }
 
-    public function books(){
-        $user = Auth::user();
-        $books = Book::all();
-        return view('book', compact('user','books'));
-    }
+    // public function books(){
+    //     $user = Auth::user();
+    //     $books = Book::all();
+    //     return view('book', compact('user','books'));
+    // }
 
-    public function submit_book(Request $req){
-        $book = new Book;
+    // public function submit_book(Request $req){
+    //     $book = new Book;
 
-        $book->judul = $req->get('judul');
-        $book->penulis = $req->get('penulis');
-        $book->tahun = $req->get('tahun');
-        $book->penerbit = $req->get('penerbit');
+    //     $book->judul = $req->get('judul');
+    //     $book->penulis = $req->get('penulis');
+    //     $book->tahun = $req->get('tahun');
+    //     $book->penerbit = $req->get('penerbit');
 
-        if($req->hasFile('cover')){
-            $extension = $req->file('cover')->extension();
+    //     if($req->hasFile('cover')){
+    //         $extension = $req->file('cover')->extension();
 
-            $filename = 'cover_buku'.time().'.'.$extension;
+    //         $filename = 'cover_buku'.time().'.'.$extension;
 
-            $req->file('cover')->storeAs(
-                'public/cover_buku',$filename
-            );
+    //         $req->file('cover')->storeAs(
+    //             'public/cover_buku',$filename
+    //         );
 
-            $book->cover = $filename;
-        }
+    //         $book->cover = $filename;
+    //     }
 
-        $book->save();
-        $notification = array(
-            'message' => 'Data buku berhasil ditambahkan',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('admin.books')->with($notification);
-    }
+    //     $book->save();
+    //     $notification = array(
+    //         'message' => 'Data buku berhasil ditambahkan',
+    //         'alert-type' => 'success'
+    //     );
+    //     return redirect()->route('admin.books')->with($notification);
+    // }
 
-    public function getDataBuku($id){
-        $buku = Book::find($id);
+    // public function getDataBuku($id){
+    //     $buku = Book::find($id);
 
-        return response()->json($buku);
-    }
+    //     return response()->json($buku);
+    // }
 
-    public function update_book(Request $req){
-        $book = Book::find($req->get('id'));
+    // public function update_book(Request $req){
+    //     $book = Book::find($req->get('id'));
 
-        $book->judul = $req->get('judul');
-        $book->penulis = $req->get('penulis');
-        $book->tahun = $req->get('tahun');
-        $book->penerbit = $req->get('penerbit');
+    //     $book->judul = $req->get('judul');
+    //     $book->penulis = $req->get('penulis');
+    //     $book->tahun = $req->get('tahun');
+    //     $book->penerbit = $req->get('penerbit');
 
-        if($req->hasFile('cover')){
-            $extension = $req->file('cover')->extension();
+    //     if($req->hasFile('cover')){
+    //         $extension = $req->file('cover')->extension();
 
-            $filename = 'cover_buku'.time().'.'.$extension;
+    //         $filename = 'cover_buku'.time().'.'.$extension;
 
-            $req->file('cover')->storeAs(
-                'public/cover_buku',$filename
-            );
+    //         $req->file('cover')->storeAs(
+    //             'public/cover_buku',$filename
+    //         );
 
-            Storage::delete('public/cover_buku/'.$req->get('old_cover'));
-            $book->cover = $filename;
-        }
+    //         Storage::delete('public/cover_buku/'.$req->get('old_cover'));
+    //         $book->cover = $filename;
+    //     }
 
-        $book->save();
-        $notification = array(
-            'message' => 'Data buku berhasil diubah',
-            'alert-type' => 'success'
-        );
-        return redirect()->route('admin.books')->with($notification);
-    }
+    //     $book->save();
+    //     $notification = array(
+    //         'message' => 'Data buku berhasil diubah',
+    //         'alert-type' => 'success'
+    //     );
+    //     return redirect()->route('admin.books')->with($notification);
+    // }
 
 
-    public function delete_book(Request $req){
-        $book = Book::find($req->get('id'));
+    // public function delete_book(Request $req){
+    //     $book = Book::find($req->get('id'));
         
-        $book->delete();
+    //     $book->delete();
 
-        $notification = array(
-            'message' => 'Buku berhasil dihapus',
-            'alert-type' => 'success'
+    //     $notification = array(
+    //         'message' => 'Buku berhasil dihapus',
+    //         'alert-type' => 'success'
             
-        );
-        return redirect()->route('admin.books')->with($notification);
-    }
+    //     );
+    //     return redirect()->route('admin.books')->with($notification);
+    // }
 
-    public function print_books(){
-        $books = Book::all();
+    // public function print_books(){
+    //     $books = Book::all();
 
-        $pdf = PDF::loadview('print_books', ['books' => $books]);
-        return $pdf->download('data_buku.pdf');
-    }
+    //     $pdf = PDF::loadview('print_books', ['books' => $books]);
+    //     return $pdf->download('data_buku.pdf');
+    // }
 
-    public function export(){
-        return Excel::download(new BooksExport, 'books.xlsx');
-    }
+    // public function export(){
+    //     return Excel::download(new BooksExport, 'books.xlsx');
+    // }
 
-    public function import(Request $req){
-        Excel::import(new BooksImport, $req->file('file'));
-        $notification = array(
-            'message' => 'Import Data Berhasil',
-            'alert-type' => 'success'
-        );
+    // public function import(Request $req){
+    //     Excel::import(new BooksImport, $req->file('file'));
+    //     $notification = array(
+    //         'message' => 'Import Data Berhasil',
+    //         'alert-type' => 'success'
+    //     );
 
-        return redirect()->route('admin.books')->with($notification);
-    }
+    //     return redirect()->route('admin.books')->with($notification);
+    // }
 
 }

@@ -102,7 +102,7 @@
                         </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-primary">Kirim</button>
                 
                 </form>
@@ -139,10 +139,6 @@
                             <input type="text" class="form-control" name="email" id="edit-email" required autocomplete="off">
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" name="password" id="edit-password" required autocomplete="off">
-                        </div>
-                        <div class="form-group">
                             <label for="roles">Role</label>
                             <select name="roles_id" class="form-control" id="edit-roles" required autocomplete="off">
                                 <option value="" selected disabled>Pilih Kategori : </option>
@@ -164,7 +160,7 @@
             <div class="modal-footer">
                 <input type="hidden" name="id" id="edit-id">
                 <input type="hidden" name="old_photo" id="edit-old-photo">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-success">Update</button>
                 </form>
             </div>
@@ -183,6 +179,10 @@
             </div>
             <div class="modal-body">
                 Apakah anda yakin akan menghapus User <strong><span id="caption"></span></strong>?
+                <br>
+                <hr>
+                <strong style="color:red">DANGER! </strong> : Seluruh history yang berkaitan dengan user ini akan ikut terhapus.
+                <hr>
                 <form method="post" action="{{ route('admin.user.delete') }}" enctype="multipart/form-data">
                     @csrf 
                     @method('DELETE')
@@ -190,8 +190,8 @@
             <div class="modal-footer">
                 <input type="hidden" name="id" id="delete-id">
                 <input type="hidden" name="old_photo" id="delete-old-photo">
+                <button type="submit" class="btn btn-danger">Hapus</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-success">Hapus</button>
                 </form>
             </div>
             </div>
@@ -221,7 +221,7 @@
                         $('#edit-username').val(res.username);
                         $('#edit-email').val(res.email);
                         $('#edit-password').val(res.password);
-                        $('#edit-roles').val(res.roles);
+                        $('#edit-roles').val(res.roles_id);
                         $('#edit-id').val(res.id);
                         $('#edit-old-photo').val(res.old-photo);
 

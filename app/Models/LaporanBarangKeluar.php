@@ -11,14 +11,10 @@ class LaporanBarangKeluar extends Model
     public $table = "transactions";
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'qty',
-    ];
-
     public function barang(){
         return $this->belongsTo('App\Models\Product', 'products_id');
     }
+    
     public static function getDataItems(){
         $items = LaporanBarangKeluar::all();
         $items_filter = [];

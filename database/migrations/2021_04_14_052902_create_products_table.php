@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->integer('harga');
             $table->foreignId('brands_id')->constrained()->onDelete('cascade');
             $table->foreignId('categories_id')->constrained()->onDelete('cascade');
-            $table->foreignId('users_id')->constrained()->onDelete('no action');
+            $table->foreignId('users_id')->constrained()->onDelete('cascade');
             $table->string('photo')->nullable();
             $table->timestamps();
         });

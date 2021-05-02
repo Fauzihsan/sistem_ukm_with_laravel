@@ -135,8 +135,8 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" name="id" id="delete-id">
+                <button type="submit" class="btn btn-danger">Hapus</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-success">Hapus</button>
                 </form>
             </div>
             </div>

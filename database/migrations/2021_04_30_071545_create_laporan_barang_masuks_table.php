@@ -17,7 +17,7 @@ class CreateLaporanBarangMasuksTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('qty');
-            $table->foreignId('users_id')->constrained();
+            $table->foreignId('users_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

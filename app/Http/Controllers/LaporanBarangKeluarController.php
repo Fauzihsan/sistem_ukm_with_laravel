@@ -7,14 +7,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use PDF;
 use App\Models\Product;
-use App\Models\LaporanBarangMasuk;
+use App\Models\LaporanBarangKeluar;
 
 class LaporanBarangKeluarController extends Controller
 {
     public function laporanBarangKeluars(){
         $user = Auth::user();
-        $products = LaporanBarangKeluar::all();
-        return view('laporanBarangKeluar', compact('user','products'));
+        $transactions = LaporanBarangKeluar::all();
+        return view('laporanBarangKeluar', compact('user','transactions'));
     }   
     
     public function getDataItem($id){
@@ -24,9 +24,9 @@ class LaporanBarangKeluarController extends Controller
     }
 
     public function print_laporanBarangKeluars(){
-        $items = LaporanBarangKeluar::all();
+        $transactions = LaporanBarangKeluar::all();
 
-        $pdf = PDF::loadview('print_laporanBarangKeluars', ['items' => $items]);
-        return $pdf->download('laporan_barang_keluar.pdf');
+        $pdf = PDF::loadview('print_laporanBarangKeluars', ['transactions' => $transactions]);
+        return $pdf->download('laporan_barang_Keluar.pdf');
     }
 }

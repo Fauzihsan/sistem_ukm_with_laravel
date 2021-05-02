@@ -15,7 +15,12 @@ class TransactionController extends Controller
         $user = Auth::user();
         $products = LaporanBarangKeluar::all();
         return view('laporanBarangKeluar', compact('user','products'));
-    }   
+    }  
+    public function transactions(){
+        $user = Auth::user();
+        $products = Product::all();
+        return view('transaction', compact('user','products'));
+    }    
 
     public function payments(){
         $user = Auth::user();

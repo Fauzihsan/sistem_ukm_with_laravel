@@ -85,7 +85,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="text" class="form-control" name="password" id="password" required autocomplete="off">
+                            <input type="password" class="form-control" name="password" id="password" required autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="roles">Role</label>
@@ -140,7 +140,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="text" class="form-control" name="password" id="edit-password" required autocomplete="off">
+                            <input type="password" class="form-control" name="password" id="edit-password" required autocomplete="off">
                         </div>
                         <div class="form-group">
                             <label for="roles">Role</label>

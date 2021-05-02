@@ -8,7 +8,7 @@ use App\Models\User;
 
 class LaporanBarangKeluar extends Model
 {
-    public $table = "laporanBarangKeluars";
+    public $table = "transactions";
     use HasFactory;
 
     protected $fillable = [
@@ -16,8 +16,8 @@ class LaporanBarangKeluar extends Model
         'qty',
     ];
 
-    public function oleh(){
-        return $this->belongsTo('App\Models\User', 'users_id');
+    public function barang(){
+        return $this->belongsTo('App\Models\Product', 'products_id');
     }
     public static function getDataItems(){
         $items = LaporanBarangKeluar::all();

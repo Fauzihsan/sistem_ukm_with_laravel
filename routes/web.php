@@ -65,7 +65,7 @@ Route::middleware('is_admin')->prefix('admin')->group(function(){
 });
 
 Route::get('laporanBarangMasuks',[App\Http\Controllers\LaporanBarangMasukController::class, 'laporanBarangMasuks'])->name('admin.laporanBarangMasuks')->prefix('admin');
-Route::get('laporanBarangKeluars',[App\Http\Controllers\TransactionController::class, 'laporanBarangKeluars'])->name('admin.laporanBarangKeluars')->prefix('admin');
+Route::get('laporanBarangKeluars',[App\Http\Controllers\LaporanBarangKeluarController::class, 'laporanBarangKeluars'])->name('admin.laporanBarangKeluars')->prefix('admin');
 
 Route::get('admin/ajaxadmin/dataBuku/{id}',
 [App\Http\Controllers\AdminController::class,'getDataBuku']);
@@ -90,6 +90,8 @@ Route::get('admin/print_books',
 [App\Http\Controllers\AdminController::class,'print_books'])->name('admin.print.books')->middleware('is_admin');
 Route::get('admin/print_laporanBarangMasuks',
 [App\Http\Controllers\LaporanBarangMasukController::class,'print_laporanBarangMasuks'])->name('admin.print.laporanBarangMasuks')->middleware('is_admin');
+Route::get('admin/print_laporanBarangKeluars',
+[App\Http\Controllers\LaporanBarangKeluarController::class,'print_laporanBarangKeluars'])->name('admin.print.laporanBarangKeluars')->middleware('is_admin');
 
 
 Route::get('admin/books/export',

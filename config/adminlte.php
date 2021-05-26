@@ -241,12 +241,18 @@ return [
         //     'label'       => 4,
         //     'label_color' => 'success',
         // ],
+        
         // [
         //     'text'        => 'Buku',
         //     'url'         => 'admin/books',
         //     'icon'        => 'fas fa-fw fa-book',
         //     'can'         => 'isSuperAdmin',
         // ],
+        [
+            'text'        => 'Dashboard',
+            'url'         => '/home',
+            'icon'        => 'fas fa-fw fa-tachometer-alt',
+        ],
         [
             'text'        => 'User',
             'url'         => 'admin/users',
@@ -256,7 +262,7 @@ return [
         [
             'text'        => 'Product',
             'url'         => 'admin/products',
-            'icon'        => 'fas fa-fw fa-suitcase',
+            'icon'        => 'fas fa-fw fa-cart-plus',
             'can'         => ['isSuperAdmin','isAdmin'],
 
         ],
@@ -269,7 +275,7 @@ return [
         [
             'text'        => 'Brands',
             'url'         => 'admin/brands',
-            'icon'        => 'fas fa-fw fa-cart-plus',
+            'icon'        => 'fas fa-fw fa-suitcase',
             'can'         => ['isSuperAdmin','isAdmin'],
         ],
         [

@@ -14,6 +14,7 @@
                     <div class="card-header">{{ __('Pengelolaan Barang')}}</div>
                     <div class="card-body">
                         <button class="btn btn-primary" data-toggle="modal" data-target="#tambahProductModal"><i class="fa fa-plus"></i> Tambah Barang</button>
+                        <a href="{{route('admin.product.export')}}" class="btn btn-secondary" target="_blank"><i class="fa fa-download"></i> Export</a>
                         <hr>
                         <table id="table-data" class="table table-striped table-bordered" style="width:100%">
                             <thead align="center">

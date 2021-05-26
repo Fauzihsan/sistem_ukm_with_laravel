@@ -26,6 +26,6 @@ class LaporanBarangMasukController extends Controller
         $items = LaporanBarangMasuk::all();
 
         $pdf = PDF::loadview('print_laporanBarangMasuks', ['items' => $items]);
-        return $pdf->download('laporan_barang_masuk.pdf');
+        return $pdf->stream('laporan_barang_masuk.pdf');
     }
 }

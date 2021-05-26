@@ -29,7 +29,7 @@ class Product extends Model
             $products_filter[$i]['harga'] = $products[$i]->harga;
             $products_filter[$i]['brands_id'] = $products[$i]->brands_id;
             $products_filter[$i]['categories_id'] = $products[$i]->categories_id;
-            $products_filter[$i]['photo'] = $products[$i]->photo;
+            // $products_filter[$i]['photo'] = $products[$i]->photo;
         }
         return $products_filter;
     }

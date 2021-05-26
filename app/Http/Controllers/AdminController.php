@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 use PDF;
-// use App\Models\Book;
+use App\Models\Book;
 use App\Exports\BooksExport;
 use App\Imports\BooksImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -15,14 +15,9 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-    }
-
-    public function index(){
-        $user = Auth::user();
-        return view('home', compact('user'));
-    }
+    // public function __construct(){
+    //     $this->middleware('auth');
+    // }
 
     // public function books(){
     //     $user = Auth::user();

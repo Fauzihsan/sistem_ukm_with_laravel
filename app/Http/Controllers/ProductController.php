@@ -11,6 +11,9 @@ use App\Models\Categorie;
 use App\Models\Brand;
 use App\Models\LaporanBarangMasuk;
 
+use App\Exports\ProductsExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class ProductController extends Controller
 {
     public function products(){
@@ -104,4 +107,17 @@ class ProductController extends Controller
         return redirect()->route('admin.products')->with($notification);
     }
 
+    public function export(){
+        return Excel::download(new ProductsExport, 'Products.xlsx');
+    }
+
+    public function import(Request $req){
+        Excel::import(new ProductsImport, $req->file('file'));
+        $notification = array(
+            'message' => 'Import Data Berhasil',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('admin.products')->with($notification);
+    }
 }

@@ -6,8 +6,9 @@ use App\Models\Book;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
+use Maatwebsite\Excel\Concerns\WithTitle;
 
-class BooksExport implements FromArray, WithHeadings, ShouldAutoSize
+class BooksExport implements FromArray, WithHeadings, ShouldAutoSize, WithTitle
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -26,4 +27,9 @@ class BooksExport implements FromArray, WithHeadings, ShouldAutoSize
             'Penerbit',
         ];
     }
+
+    //Mengganti nama worksheetnya
+    // public function title():string{
+    //     return 'Data Buku';
+    // }
 }

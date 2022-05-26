@@ -19,11 +19,12 @@ class IsBem
         if(auth()->user()->roles_id == 7){
             return $next($request);
         }
-        else if(auth()->user()->roles_id == 1){
-            return $next($request);
-        }
         else{
-            return redirect('home')->with('error','Anda login sebagai BEM');
+            $notification = array(
+                'message' => 'Anda tidak memiliki akses sebagai BEM',
+                'alert-type' => 'error'
+        );
+            return redirect('home')->with($notification);
         }
     }
 }

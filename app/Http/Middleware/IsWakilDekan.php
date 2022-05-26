@@ -19,11 +19,12 @@ class IsWakilDekan
         if(auth()->user()->roles_id == 4){
             return $next($request);
         }
-        else if(auth()->user()->roles_id == 1){
-            return $next($request);
-        }
         else{
-            return redirect('home')->with('error','Anda login sebagai Wakil Dekan');
+            $notification = array(
+                'message' => 'Anda tidak memiliki akses sebagai Wakil Dekan',
+                'alert-type' => 'error'
+        );
+            return redirect('home')->with($notification);
         }
     }
 }

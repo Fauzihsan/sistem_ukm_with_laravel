@@ -19,8 +19,6 @@ class ProposalValidationController extends Controller
         $proposalsForDekan = Proposal::orderBy('created_at','DESC')->where('validated_wd3',1)->get();
         $proposalsForBaak = Proposal::orderBy('created_at','DESC')->where('validated_dekan',1)->get();
 
-
-        // $proposals = Proposal::leftJoin('comments', 'comments.proposals_id', '=', 'proposals.id')->select('proposals.*', 'comments.*')->get()->where('users_id',$user->id);
         $comments = Comment::all();
         return view('validasi_proposal', compact('user','proposalsForBem','proposalsForBlm','proposalsForPembimbing','proposalsForWd3','proposalsForDekan','proposalsForBaak','comments'));
     }

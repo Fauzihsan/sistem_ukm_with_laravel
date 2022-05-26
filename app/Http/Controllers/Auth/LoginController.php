@@ -56,7 +56,11 @@ class LoginController extends Controller
             }
         }
         else{
-            return redirect()->route('login')->with('email','Email-Address And Password Are Wrong');
+            $notification = array(
+                'message' => 'Email atau Password Salah',
+                'alert-type' => 'error'
+            );
+            return redirect()->route('login')->with($notification);
         }
     }
 }

@@ -1,6 +1,6 @@
 @extends('adminlte::master')
 
-@php( $dashboard_url = View::getSection('dashboard_url') ?? config('adminlte.dashboard_url', 'home') )
+@php( $dashboard_url = View::getSection('dashboard_url') ?? config('adminlte.dashboard_url', '') )
 
 @if (config('adminlte.use_route_url', false))
     @php( $dashboard_url = $dashboard_url ? route($dashboard_url) : '' )
@@ -16,12 +16,18 @@
 @section('classes_body'){{ ($auth_type ?? 'login') . '-page' }}@stop
 
 @section('body')
+<div class="d-flex flex-row w-75 h-75 justify-content-around align-items-center align-self-center" style="border-radius: 50px;
+background: #ffffff;
+box-shadow:  20px 20px 60px #d9d9d9,
+             -20px -20px 60px #ffffff;">
+    <div>
+        <img src="{{ asset('img/ftLogo.png') }}" style="display: block; margin-top: auto; margin-bottom: auto">
+    </div>
     <div class="{{ $auth_type ?? 'login' }}-box">
 
         {{-- Logo --}}
-        <div class="{{ $auth_type ?? 'login' }}-logo">
+        <div class="{{ $auth_type ?? 'login' }}-logo d-flex flex-column">
             <a href="{{ $dashboard_url }}">
-                <img src="{{ asset(config('adminlte.logo_img')) }}" height="50">
                 {!! config('adminlte.logo', '<b>Admin</b>LTE') !!}
             </a>
         </div>
@@ -53,6 +59,7 @@
         </div>
 
     </div>
+</div>
 @stop
 
 @section('adminlte_js')

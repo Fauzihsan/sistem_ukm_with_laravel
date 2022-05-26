@@ -83,6 +83,7 @@
                         <div class="form-group">
                             <label for="fileProposal">File Proposal</label>
                             <input type="file" class="form-control" name="fileProposal" id="fileProposal" required autocomplete="off">
+                            <label for="" style="color: red">File harus berupa pdf</label>
                         </div>
             </div>
             <div class="modal-footer">
@@ -139,6 +140,7 @@
                                 <div class="form-group" id="fileProposal-area"></div>
                                 <label for="fileProposal">File Proposal</label>
                                 <input type="file" class="form-control" name="fileProposal" id="edit-poster">
+                                <label for="" style="color: red">File harus berupa pdf</label>
                             </div>
                     </div>
             </div>
@@ -177,6 +179,7 @@
                     console.log(res);
                     $('#edit-title').val(res.title);
                     $('#edit-id').val(res.id);
+                    $('#edit-old-fileProposal').val(res.old_fileProposal);
                 },
             });
         });

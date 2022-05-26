@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'PENGELOLAAN BARANG',
+    'title' => 'Sistem Proposal UKM',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -46,7 +46,7 @@ return [
     */
 
     'logo' => '<b>UKM FTUNSUR</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'img/ftLogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -187,7 +187,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => '/',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -234,20 +234,6 @@ return [
         //     'url'  => 'admin/blog',
         //     'can'  => 'manage-blog',
         // ],
-        // [
-        //     'text'        => 'pages',
-        //     'url'         => 'admin/pages',
-        //     'icon'        => 'far fa-fw fa-file',
-        //     'label'       => 4,
-        //     'label_color' => 'success',
-        // ],
-
-        // [
-        //     'text'        => 'Buku',
-        //     'url'         => 'admin/books',
-        //     'icon'        => 'fas fa-fw fa-book',
-        //     'can'         => 'isSuperAdmin',
-        // ],
         [
             'text'        => 'Dashboard',
             'url'         => '/home',
@@ -262,20 +248,20 @@ return [
         [
             'text'        => 'Kelola Aktivitas UKM',
             'url'         => 'admin/activities',
-            'icon'        => 'fas fa-fw fa-cart-plus',
+            'icon'        => 'fas fa-fw fa-sitemap',
             'can'         => 'isUkm'
 
         ],
         [
             'text'        => 'Pengajuan Proposal',
             'url'         => 'admin/proposals',
-            'icon'        => 'fas fa-fw fa-list',
+            'icon'        => 'fas fa-fw fa-file-import',
             'can'         => 'isUkm',
         ],
         [
             'text'        => 'Validasi Proposal',
             'url'         => 'admin/validasi_proposals',
-            'icon'        => 'fas fa-fw fa-suitcase',
+            'icon'        => 'fas fa-fw fa-check-double',
             'can'         => ['isDekan','isWakilDekan','isPembimbing','isBlm','isBem'],
         ],
         [

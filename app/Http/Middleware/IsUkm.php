@@ -20,11 +20,12 @@ class IsUkm
         if(auth()->user()->roles_id == 8){
             return $next($request);
         }
-        else if(auth()->user()->roles_id == 1){
-            return $next($request);
-        }
         else{
-            return redirect('home')->with('error','Anda tidak memiliki akses sebagai UKM');
+            $notification = array(
+                'message' => 'Anda tidak memiliki akses sebagai Pengurus UKM',
+                'alert-type' => 'error'
+        );
+            return redirect('home')->with($notification);
         }
     }
 }

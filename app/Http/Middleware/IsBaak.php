@@ -20,11 +20,12 @@ class IsBaak
         if(auth()->user()->roles_id == 2){
             return $next($request);
         }
-        else if(auth()->user()->roles_id == 1){
-            return $next($request);
-        }
         else{
-            return redirect('home')->with('error','Anda login sebagai BAAK');
+            $notification = array(
+                'message' => 'Anda tidak memiliki akses sebagai BAAK',
+                'alert-type' => 'error'
+        );
+            return redirect('home')->with($notification);
         }
     }
 }

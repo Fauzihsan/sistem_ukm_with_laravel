@@ -11,7 +11,7 @@
         <thead align="center">
             <tr>
                 <th>No</th>
-                <th>Proposal</th>
+                <th>Judul</th>
                 <th>Proposal</th>
                 <th>Mengajukan</th>
                 <th>Diterima</th>

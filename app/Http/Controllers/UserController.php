@@ -18,21 +18,25 @@ class UserController extends Controller
         return view('user', compact('user','users','roles'));
     }
 
-    
+
     public function getDataUser($id){
         $user = User::find($id);
 
         return response()->json($user);
     }
-    
+
     public function submit_user(Request $req){
         $user = new User;
+
+        $req->validate([
+            'photo' => 'mimes:jpg,png,jpeg'
+        ]);
 
         $user->name = $req->get('name');
         $user->username = $req->get('username');
         $user->email = $req->get('email');
         $newPassword = $req->get('password');
-        $user->password = bcrypt($newPassword); 
+        $user->password = bcrypt($newPassword);
         $user->roles_id = $req->get('roles_id');
 
         if($req->hasFile('photo')){
@@ -55,13 +59,17 @@ class UserController extends Controller
         return redirect()->route('admin.users')->with($notification);
     }
 
-    
+
     public function update_user(Request $req){
         $user = User::find($req->get('id'));
 
+        $req->validate([
+            'photo' => 'mimes:jpg,png,jpeg'
+        ]);
+
         $user->name = $req->get('name');
         $user->username = $req->get('username');
-        $user->email = $req->get('email'); 
+        $user->email = $req->get('email');
         $user->roles_id = $req->get('roles_id');
 
         if($req->hasFile('photo')){
@@ -85,7 +93,7 @@ class UserController extends Controller
         return redirect()->route('admin.users')->with($notification);
     }
 
-    
+
     public function delete_user(Request $req){
         $user = User::find($req->get('id'));
 
@@ -95,7 +103,7 @@ class UserController extends Controller
         $notification = array(
             'message' => 'User berhasil dihapus',
             'alert-type' => 'success'
-            
+
         );
         return redirect()->route('admin.users')->with($notification);
     }

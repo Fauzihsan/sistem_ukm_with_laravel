@@ -19,11 +19,12 @@ class IsDekan
         if(auth()->user()->roles_id == 3){
             return $next($request);
         }
-        else if(auth()->user()->roles_id == 1){
-            return $next($request);
-        }
         else{
-            return redirect('home')->with('error','Anda login sebagai Dekan');
+            $notification = array(
+                'message' => 'Anda tidak memiliki akses sebagai Dekan',
+                'alert-type' => 'error'
+        );
+            return redirect('home')->with($notification);
         }
     }
 }

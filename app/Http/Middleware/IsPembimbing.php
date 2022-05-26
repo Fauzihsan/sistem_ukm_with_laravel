@@ -19,11 +19,12 @@ class IsPembimbing
         if(auth()->user()->roles_id == 6){
             return $next($request);
         }
-        else if(auth()->user()->roles_id == 1){
-            return $next($request);
-        }
         else{
-            return redirect('home')->with('error','Anda login sebagai Pembimbing');
+            $notification = array(
+                'message' => 'Anda tidak memiliki akses sebagai Pembimbing',
+                'alert-type' => 'error'
+        );
+            return redirect('home')->with($notification);
         }
     }
 }

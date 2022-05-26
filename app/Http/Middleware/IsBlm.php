@@ -19,11 +19,12 @@ class IsBlm
         if(auth()->user()->roles_id == 6){
             return $next($request);
         }
-        else if(auth()->user()->roles_id == 1){
-            return $next($request);
-        }
         else{
-            return redirect('home')->with('error','Anda login sebagai BLM');
+            $notification = array(
+                'message' => 'Anda tidak memiliki akses sebagai BLM',
+                'alert-type' => 'error'
+        );
+            return redirect('home')->with($notification);
         }
     }
 }

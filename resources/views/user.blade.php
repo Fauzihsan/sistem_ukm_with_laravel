@@ -99,6 +99,7 @@
                         <div class="form-group">
                             <label for="photo">Photo</label>
                             <input type="file" class="form-control" name="photo" id="photo">
+                            <label for="" style="color: red">Photo harus berupa jpg/jpeg/png</label>
                         </div>
             </div>
             <div class="modal-footer">
@@ -115,7 +116,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Data Product</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Data User</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><i class="fa fa-times" aria-hidden="true"></i></span>
                 </button>
@@ -153,6 +154,7 @@
                             <div class="form-group">
                                 <label for="photo">Photo</label>
                                 <input type="file" class="form-control" name="photo" id="photo">
+                                <label for="" style="color: red">Photo harus berupa jpg/jpeg/png</label>
                             </div>
                         </div>
                     </div>

@@ -19,8 +19,12 @@ class IsSuperAdmin
     {
         if(auth()->user()->roles_id == 1){
             return $next($request);
+        } else{
+            $notification = array(
+                'message' => 'Anda tidak memiliki akses sebagai Super Admin',
+                'alert-type' => 'error'
+        );
+            return redirect('home')->with($notification);
         }
-
-        return redirect('home')->with('error','Anda tidak memiliki akses sebagai Super Admin');
     }
 }

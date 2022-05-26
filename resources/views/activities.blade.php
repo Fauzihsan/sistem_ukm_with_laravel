@@ -82,6 +82,7 @@
                         <div class="form-group">
                             <label for="poster">Poster</label>
                             <input type="file" class="form-control" name="poster" id="poster">
+                            <label for="" style="color: red">Poster harus berupa png/jpg/jpeg</label>
                         </div>
             </div>
             <div class="modal-footer">
@@ -147,6 +148,7 @@
                                 <div class="form-group" id="image-area"></div>
                                 <label for="poster">Poster</label>
                                 <input type="file" class="form-control" name="poster" id="edit-poster">
+                                <label for="" style="color: red">Poster harus berupa png/jpg/jpeg</label>
                             </div>
                     </div>
             </div>
@@ -187,7 +189,7 @@
                         $('#edit-description').val(res.description);
                         $('#edit-users').val(res.users_id);
                         $('#edit-id').val(res.id);
-                        $('#edit-old-poster').val(res.old-poster);
+                        $('#edit-old-poster').val(res.old_poster);
 
                         if(res.poster !== null){
                             $('#image-area').append(

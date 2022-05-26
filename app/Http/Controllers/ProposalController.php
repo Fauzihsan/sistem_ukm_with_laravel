@@ -14,10 +14,7 @@ class ProposalController extends Controller
 {
     public function proposals(){
         $user = Auth::user();
-        // $comments = Comment::leftJoin('proposals', 'proposals.id', '=' , 'comments.proposals_id')->count();
         $comments = Comment::all();
-
-        // $proposals = Proposal::leftJoin('comments', 'comments.proposals_id', '=', 'proposals.id')->select('proposals.*', 'comments.*')->get()->where('users_id',$user->id);
         $proposals = Proposal::orderBy('created_at','DESC')->where('users_id',$user->id)->get();
         return view('proposal', compact('user','proposals','comments'));
     }
@@ -37,6 +34,10 @@ class ProposalController extends Controller
     public function submit_proposal(Request $req){
         $proposal = new Proposal;
         $user = Auth::user();
+
+        $req->validate([
+            'fileProposal' => 'mimes:pdf'
+        ]);
 
         $proposal->title = $req->get('title');
         $proposal->users_id = $req->get('users_id');
@@ -88,6 +89,10 @@ class ProposalController extends Controller
         $proposal = Proposal::find($req->get('id'));
         $user = Auth::user();
 
+        $req->validate([
+            'fileProposal' => 'mimes:pdf'
+        ]);
+
         if($req->hasFile('fileProposal')){
             $extension = $req->file('fileProposal')->extension();
 
@@ -111,15 +116,6 @@ class ProposalController extends Controller
     }
 
     public function downloadProposal($filename){
-        // $path = storage_path($namaFile);
-
-        // Response::make(file_get_contents($path), 200, [
-        //     'Content-Type' => 'application/pdf',
-        //     'Content-Disposition' => 'inline; filename="'.$namaFile.'"'
-        // ]);
-
-
-        // return redirect()->route('admin.proposals');
         $path = public_path('storage/file_proposal/'.$filename);
 
         return response()->download($path);

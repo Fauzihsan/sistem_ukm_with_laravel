@@ -25,6 +25,11 @@ class ActivityController extends Controller
     public function submit_activity(Request $req){
         $activity = new Activity;
 
+
+        $req->validate([
+            'poster' => 'mimes:jpg,png,jpeg'
+        ]);
+
         $activity->title = $req->get('title');
         $activity->description = $req->get('description');
         $activity->users_id = $req->get('users_id');
@@ -51,6 +56,11 @@ class ActivityController extends Controller
 
     public function update_activity(Request $req){
         $activity = Activity::find($req->get('id'));
+
+
+        $req->validate([
+            'poster' => 'mimes:jpg,png,jpeg'
+        ]);
 
         $activity->title = $req->get('title');
         $activity->description = $req->get('description');

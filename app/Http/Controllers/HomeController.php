@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Models\Categorie;
+use App\Models\Activity;
+use App\Models\Proposal;
 use App\Models\Brand;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -29,10 +29,9 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $jumlahProduct = Product::all()->count();
-        $jumlahCategorie = Categorie::all()->count();
-        $jumlahBrand = Brand::all()->count();
+        $jumlahActivity = Activity::all()->where("users_id",$user->id)->count();
+        $jumlahProposal = Proposal::all()->where("users_id",$user->id)->count();
         $jumlahPegawai = User::all()->count();
-        return view('home',compact('user','jumlahProduct','jumlahCategorie','jumlahBrand','jumlahPegawai'));
+        return view('home',compact('user','jumlahActivity','jumlahProposal','jumlahPegawai'));
     }
 }

@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>TOKOZ1</b>',
+    'logo' => '<b>UKM FTUNSUR</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -224,16 +224,16 @@ return [
     */
 
     'menu' => [
-        [
-            'text' => 'search',
-            'search' => true,
-            'topnav' => true,
-        ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
+        // [
+        //     'text' => 'search',
+        //     'search' => true,
+        //     'topnav' => true,
+        // ],
+        // [
+        //     'text' => 'blog',
+        //     'url'  => 'admin/blog',
+        //     'can'  => 'manage-blog',
+        // ],
         // [
         //     'text'        => 'pages',
         //     'url'         => 'admin/pages',
@@ -241,7 +241,7 @@ return [
         //     'label'       => 4,
         //     'label_color' => 'success',
         // ],
-        
+
         // [
         //     'text'        => 'Buku',
         //     'url'         => 'admin/books',
@@ -254,50 +254,47 @@ return [
             'icon'        => 'fas fa-fw fa-tachometer-alt',
         ],
         [
-            'text'        => 'User',
+            'text'        => 'Kelola Akun',
             'url'         => 'admin/users',
             'icon'        => 'fas fa-fw fa-user',
             'can'         => 'isSuperAdmin',
         ],
         [
-            'text'        => 'Product',
-            'url'         => 'admin/products',
+            'text'        => 'Kelola Aktivitas UKM',
+            'url'         => 'admin/activities',
             'icon'        => 'fas fa-fw fa-cart-plus',
-            'can'         => ['isSuperAdmin','isAdmin'],
+            'can'         => 'isUkm'
 
         ],
         [
-            'text'        => 'Categorie',
-            'url'         => 'admin/categories',
+            'text'        => 'Pengajuan Proposal',
+            'url'         => 'admin/proposals',
             'icon'        => 'fas fa-fw fa-list',
-            'can'         => ['isSuperAdmin','isAdmin'],
+            'can'         => 'isUkm',
         ],
         [
-            'text'        => 'Brands',
-            'url'         => 'admin/brands',
+            'text'        => 'Validasi Proposal',
+            'url'         => 'admin/validasi_proposals',
             'icon'        => 'fas fa-fw fa-suitcase',
-            'can'         => ['isSuperAdmin','isAdmin'],
+            'can'         => ['isDekan','isWakilDekan','isPembimbing','isBlm','isBem'],
         ],
         [
-            'text'    => 'Laporan',
+            'text'    => 'Reports',
             'icon'    => 'fas fa-fw fa-file',
-            'submenu' => [
-                [
-                    'text' => 'Laporan Barang Masuk',
-                    'icon'    => 'fas fa-fw fa-download',
-                    'url'  => 'admin/laporanBarangMasuks',
-                ],
-                [
-                    'text' => 'Laporan Barang Keluar',
-                    'icon'    => 'fas fa-fw fa-upload',
-                    'url'  => 'admin/laporanBarangKeluars',
-                ],
-            ],
-        ],
-        [
-            'text'        => 'Transaksi',
-            'url'         => 'admin/transactions',
-            'icon'        => 'fas fa-fw fa-dollar-sign',
+            'url'     => 'admin/reports',
+            'can'     => 'isBaak'
+            // 'submenu' => [
+            //     [
+            //         'text' => 'Laporan Barang Masuk',
+            //         'icon'    => 'fas fa-fw fa-download',
+            //         'url'  => 'admin/laporanBarangMasuks',
+            //     ],
+            //     [
+            //         'text' => 'Laporan Barang Keluar',
+            //         'icon'    => 'fas fa-fw fa-upload',
+            //         'url'  => 'admin/laporanBarangKeluars',
+            //     ],
+            // ],
         ],
         // ['header' => 'account_settings'],
         // [

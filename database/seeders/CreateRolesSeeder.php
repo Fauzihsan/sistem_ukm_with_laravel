@@ -21,11 +21,31 @@ class CreateRolesSeeder extends Seeder
             ],
             [
                 'id' => '2',
-                'name' => 'Admin',
+                'name' => 'BAAK',
             ],
             [
                 'id' => '3',
-                'name' => 'Staff',
+                'name' => 'Dekan',
+            ],
+            [
+                'id' => '4',
+                'name' => 'Wakil Dekan 3',
+            ],
+            [
+                'id' => '5',
+                'name' => 'Pembimbing',
+            ],
+            [
+                'id' => '6',
+                'name' => 'Badan Legislatif Mahasiswa',
+            ],
+            [
+                'id' => '7',
+                'name' => 'Badan Eksekutif Mahasiswa',
+            ],
+            [
+                'id' => '8',
+                'name' => 'Unit Kegiatan Mahasiswa',
             ]
         ];
         foreach($role as $key => $value){

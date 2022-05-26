@@ -42,7 +42,7 @@
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->password}}</td>
                                         <td>{{$user->role->name}}</td>
-                                        
+
                                         <td>
                                             <div class="btn-group" role="group" aria-label="Basuc Example">
                                                 <button type="button" id="btn-edit-user" class="btn btn-success" data-toggle="modal" data-target="#editUserModal" data-id="{{$user->id}}">Edit</button>
@@ -70,7 +70,7 @@
             </div>
             <div class="modal-body">
                 <form method="post" action="{{ route('admin.user.submit') }}" enctype="multipart/form-data">
-                    @csrf 
+                    @csrf
                         <div class="form-group">
                             <label for="name">Nama</label>
                             <input type="text" class="form-control" name="name" id="name" required autocomplete="off">
@@ -104,7 +104,7 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-primary">Kirim</button>
-                
+
                 </form>
             </div>
             </div>
@@ -122,7 +122,7 @@
             </div>
             <div class="modal-body">
                 <form method="post" action="{{ route('admin.user.update') }}" enctype="multipart/form-data">
-                    @csrf 
+                    @csrf
                     @method('PATCH')
                     <div class="row">
                         <div class="col-md-6">
@@ -184,7 +184,7 @@
                 <strong style="color:red">DANGER! </strong> : Seluruh history yang berkaitan dengan user ini akan ikut terhapus.
                 <hr>
                 <form method="post" action="{{ route('admin.user.delete') }}" enctype="multipart/form-data">
-                    @csrf 
+                    @csrf
                     @method('DELETE')
             </div>
             <div class="modal-footer">

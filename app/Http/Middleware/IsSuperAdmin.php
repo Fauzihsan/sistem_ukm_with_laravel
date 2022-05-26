@@ -21,6 +21,6 @@ class IsSuperAdmin
             return $next($request);
         }
 
-        return redirect('home')->with('error','Anda tidak memiliki akses sebagai SUper Admin');
+        return redirect('home')->with('error','Anda tidak memiliki akses sebagai Super Admin');
     }
 }

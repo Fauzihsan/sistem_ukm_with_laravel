@@ -30,13 +30,26 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('isSuperAdmin', function(User $user){
             return $user->roles_id == 1;
         });
-
-        Gate::define('isAdmin', function(User $user){
+        Gate::define('isBaak', function(User $user){
             return $user->roles_id == 2;
         });
-        
-        Gate::define('isUser', function(User $user){
+        Gate::define('isDekan', function(User $user){
             return $user->roles_id == 3;
+        });
+        Gate::define('isWakilDekan', function(User $user){
+            return $user->roles_id == 4;
+        });
+        Gate::define('isPembimbing', function(User $user){
+            return $user->roles_id == 5;
+        });
+        Gate::define('isBlm', function(User $user){
+            return $user->roles_id == 6;
+        });
+        Gate::define('isBem', function(User $user){
+            return $user->roles_id == 7;
+        });
+        Gate::define('isUkm', function(User $user){
+            return $user->roles_id == 8;
         });
     }
 }

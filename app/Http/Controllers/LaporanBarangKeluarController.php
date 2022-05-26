@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use PDF;
+use Barryvdh\DomPDF\PDF;
 use App\Models\LaporanBarangKeluar;
 
 class LaporanBarangKeluarController extends Controller
@@ -14,8 +14,8 @@ class LaporanBarangKeluarController extends Controller
         $user = Auth::user();
         $transactions = LaporanBarangKeluar::all();
         return view('laporanBarangKeluar', compact('user','transactions'));
-    }   
-    
+    }
+
     public function getDataItem($id){
         $product = LaporanBarangKeluar::find($id);
 

@@ -8,14 +8,14 @@
 
 @section('content')
     <div class="container">
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
             <span class="info-box-icon bg-green"><i class="fa fa-shopping-cart"></i></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Product</span>
-              <span class="info-box-number">{{$jumlahProduct}}</span>
+              <span class="info-box-text">Total Event {{$user->name}}</span>
+              <span class="info-box-number">{{$jumlahActivity}}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -28,7 +28,7 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Categorie</span>
-              <span class="info-box-number">{{$jumlahCategorie}}</span>
+              <span class="info-box-number">{{$jumlahProposal}}</span>
             </div>
             <!-- /.info-box-content -->
           </div>
@@ -65,23 +65,15 @@
           <!-- /.info-box -->
         </div>
         <!-- /.col -->
-      </div>
+      </div> --}}
       <!-- /.row -->
 
         <div class="row justify-content-header">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">{{ __('Selamat Datang')}}</div>
+                    <div class="card-header">Selamat Datang {{$user->name}}</div>
                     <div class="card-body">
-                        @if($user->roles_id==1)
-                            Anda adalah Super Admin
-                        @elseif($user->roles_id == 2)
-                            Anda adalah Admin
-                        @else
-                            Anda adalah Staff                            
-                        @endif
                     </div>
-                    
                 </div>
             </div>
         </div>

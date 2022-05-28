@@ -13,7 +13,8 @@
                 <div class="card">
                     <div class="card-header">{{ __('Daftar Proposal')}}</div>
                     <div class="card-body">
-                        <a href="{{route('admin.print.reportProposal')}}" target="_blank" class="btn btn-secondary"><i class="fa fa-print"></i> Unduh Laporan</a>
+                        <a href="{{route('admin.print.reportProposal')}}" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> List Laporan</a>
+                        <a href="{{route('admin.print.allProposal')}}" target="_blank" class="btn btn-primary"><i class="fa fa-print"></i> File Laporan</a>
                         <hr>
                         <table id="table-data" class="table table-hover" style="width:100%">
                             <thead align="center">

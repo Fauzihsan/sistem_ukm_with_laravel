@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         'is_blm' => \App\Http\Middleware\IsBlm::class,
         'is_bem' => \App\Http\Middleware\IsBem::class,
         'is_ukm' => \App\Http\Middleware\IsUkm::class,
+        'is_validator' => \App\Http\Middleware\IsValidator::class,
     ];
 }

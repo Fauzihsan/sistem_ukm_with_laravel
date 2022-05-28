@@ -6,6 +6,7 @@ use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Proposal;
+use File;
 
 class ProposalValidationController extends Controller
 {
@@ -75,6 +76,12 @@ class ProposalValidationController extends Controller
         $proposal = Proposal::find($req->get('id'));
         $proposal->validated_dekan = !$req->get('validated_dekan');
         $proposal->status = "Disetujui";
+
+        $asal = public_path().'/storage/file_proposal/'.$req->get('file');
+        $tujuan = public_path().'/storage/acc_proposal/'.$req->get('file');
+
+        File::copy($asal,$tujuan);
+
         $proposal->save();
         $notification = array(
             'message' => 'Proposal Berhasil disetujui',

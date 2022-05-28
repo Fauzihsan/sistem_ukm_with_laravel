@@ -16,7 +16,7 @@ class IsPembimbing
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->roles_id == 6){
+        if(auth()->user()->roles_id == 5){
             return $next($request);
         }
         else{

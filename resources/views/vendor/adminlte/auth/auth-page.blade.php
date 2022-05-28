@@ -16,12 +16,14 @@
 @section('classes_body'){{ ($auth_type ?? 'login') . '-page' }}@stop
 
 @section('body')
-<div class="d-flex flex-row w-75 h-75 justify-content-around align-items-center align-self-center" style="border-radius: 50px;
+
+<link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
+<div class="loginBox d-flex flex-lg-row flex-column p-3 justify-content-around align-items-center align-self-center" style="border-radius: 50px;
 background: #ffffff;
 box-shadow:  20px 20px 60px #d9d9d9,
              -20px -20px 60px #ffffff;">
-    <div>
-        <img src="{{ asset('img/ftLogo.png') }}" style="display: block; margin-top: auto; margin-bottom: auto">
+    <div class="boxLogo">
+        <img src="{{ asset('img/ftLogo.png') }}" class="d-lg-block imgLogo" style="margin-top: auto; margin-bottom: auto">
     </div>
     <div class="{{ $auth_type ?? 'login' }}-box">
 

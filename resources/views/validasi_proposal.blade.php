@@ -236,6 +236,7 @@
             <div class="modal-footer">
                 <input type="hidden" name="users_id" value="{{$user->id}}">
                 <input type="hidden" name="id" id="edit-id">
+                <input type="hidden" name="file" id="file">
                 <input type="hidden" name="validated_bem" id="edit-validated_bem">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                 <button type="submit" class="btn btn-success">Setujui</button>
@@ -266,7 +267,7 @@
                     $('#edit-title').val(res.title);
                     $('#edit-id').val(res.id);
                     $('#edit-validated_bem').val(res.validated_bem);
-
+                    $('#file').val(res.file);
                 },
             });
         });

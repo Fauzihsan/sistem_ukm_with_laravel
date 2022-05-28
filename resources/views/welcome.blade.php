@@ -9,7 +9,7 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
-        <link rel="icon" type="image/x-icon" href="{{ asset('img/ftLogo.png') }}" />
+        {{-- <link rel="icon" type="image/x-icon" href="{{ asset('img/ftLogo.png') }}" /> --}}
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link rel="preconnect" href="https://fonts.gstatic.com" />

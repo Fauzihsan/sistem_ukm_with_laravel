@@ -54,7 +54,7 @@ class ProposalController extends Controller
         }
         $proposal->save();
         $notification = array(
-            'message' => 'Kategori Barang berhasil ditambahkan',
+            'message' => 'Proposal berhasil diajukan',
             'alert-type' => 'success'
         );
         return redirect()->route('admin.proposals')->with($notification);

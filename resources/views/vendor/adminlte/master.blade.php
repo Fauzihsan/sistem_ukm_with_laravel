@@ -125,7 +125,7 @@
             break;
         }
         @endif
-        
+
         @if($errors->any())
             toastr.error("{{$errors}}");
         @endif

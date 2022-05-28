@@ -38,22 +38,22 @@
                                     <span class="info-box-icon bg-yellow"><i class="fa fa-file-import"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Proposal Diajukan</span>
-                                        <span class="info-box-number">{{$jumlahProposal}}</span>
+                                        <span class="info-box-number">{{$jumlahProposalMenungguPersetujuan}}</span>
                                     </div>
                                 @else
                                     <span class="info-box-icon bg-yellow"><i class="fa fa-procedures"></i></span>
                                     <div class="info-box-content">
                                         <span class="info-box-text">Menunggu Persetujuan</span>
                                         @if ($user->roles_id == 7)
-                                            <span class="info-box-number">{{$disetujuiBem}}</span>
+                                            <span class="info-box-number">{{$menungguBem}}</span>
                                         @elseif ($user->roles_id == 6)
-                                            <span class="info-box-number">{{$disetujuiBlm}}</span>
+                                            <span class="info-box-number">{{$menungguBlm}}</span>
                                         @elseif ($user->roles_id == 5)
-                                            <span class="info-box-number">{{$disetujuiPembimbing}}</span>
+                                            <span class="info-box-number">{{$menungguPembimbing}}</span>
                                         @elseif ($user->roles_id == 4)
-                                            <span class="info-box-number">{{$disetujuiWd3}}</span>
+                                            <span class="info-box-number">{{$menungguWd3}}</span>
                                         @elseif ($user->roles_id == 3)
-                                            <span class="info-box-number">{{$disetujuiDekan}}</span>
+                                            <span class="info-box-number">{{$menungguDekan}}</span>
                                         @endif
                                     </div>
                                 @endif
@@ -79,15 +79,15 @@
                                     <div class="info-box-content">
                                         <span class="info-box-text">Disetujui</span>
                                         @if ($user->roles_id == 7)
-                                            <span class="info-box-number">{{$menungguBem}}</span>
+                                            <span class="info-box-number">{{$disetujuiBem}}</span>
                                         @elseif ($user->roles_id == 6)
-                                            <span class="info-box-number">{{$menungguBlm}}</span>
+                                            <span class="info-box-number">{{$disetujuiBlm}}</span>
                                         @elseif ($user->roles_id == 5)
-                                            <span class="info-box-number">{{$menungguPembimbing}}</span>
+                                            <span class="info-box-number">{{$disetujuiPembimbing}}</span>
                                         @elseif ($user->roles_id == 4)
-                                            <span class="info-box-number">{{$menungguWd3}}</span>
+                                            <span class="info-box-number">{{$disetujuiWd3}}</span>
                                         @elseif ($user->roles_id == 3)
-                                            <span class="info-box-number">{{$menungguDekan}}</span>
+                                            <span class="info-box-number">{{$disetujuiDekan}}</span>
                                         @endif
                                     </div>
                                   @endif
@@ -101,8 +101,12 @@
                                 <span class="info-box-icon bg-green"><i class="fa fa-file"></i></span>
 
                                 <div class="info-box-content">
-                                  <span class="info-box-text">Total Proposal</span>
+                                  <span class="info-box-text">Total Proposal Yang Ada</span>
+                                  @if ($user->roles_id == 8)
+                                    <span class="info-box-number">{{$jumlahProposal}}</span>
+                                  @else
                                   <span class="info-box-number">{{$proposal}}</span>
+                                  @endif
                                 </div>
                                 <!-- /.info-box-content -->
                               </div>

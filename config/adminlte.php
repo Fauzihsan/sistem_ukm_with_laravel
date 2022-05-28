@@ -265,7 +265,7 @@ return [
             'can'         => ['isDekan','isWakilDekan','isPembimbing','isBlm','isBem'],
         ],
         [
-            'text'    => 'Reports',
+            'text'    => 'Report',
             'icon'    => 'fas fa-fw fa-file',
             'url'     => 'admin/reports',
             'can'     => 'isBaak'

@@ -23,6 +23,10 @@
     gap: 1rem;
 }
 
+.loginBox {
+    width: 80%;
+    height: 80%;
+}
 @media (min-width: 320px) and (max-width: 480px) {
     .containerActivity {
         display: flex;
@@ -33,5 +37,19 @@
 
     .card-portfolio {
         width: 90%;
+    }
+
+    .boxLogo {
+        justify-content: center;
+        display: flex;
+    }
+
+    .imgLogo {
+        width: 50%;
+    }
+
+    .loginBox {
+        width: auto;
+        height: auto;
     }
 }

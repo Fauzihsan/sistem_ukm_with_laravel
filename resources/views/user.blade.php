@@ -22,7 +22,6 @@
                                     <th>Nama</th>
                                     <th>Username</th>
                                     <th>Email</th>
-                                    <th>Password</th>
                                     <th>Role</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -40,7 +39,6 @@
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->username}}</td>
                                         <td>{{$user->email}}</td>
-                                        <td>{{$user->password}}</td>
                                         <td>{{$user->role->name}}</td>
 
                                         <td>

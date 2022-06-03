@@ -30,7 +30,7 @@
                         <h5 class="fst-italic text-center lh-1" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="2000" data-aos-delay="500">Fakultas Teknik Universitas Suryakancana</h5>
                         <p class="text-center" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="2000" data-aos-delay="800">Sistem Unit Kegiatan Mahasiswa</p>
                         <div data-aos="zoom-out-up" data-aos-duration="2000" data-aos-delay="1000">
-                            <button class="btn btn-success rounded mx-auto d-block">
+                            <button class="btn btnLogin rounded mx-auto d-block">
                                 <a href="{{ route('login') }}" class="text-white note-style">LOGIN</a>
                             </button>
                         </div>

@@ -11755,8 +11755,14 @@ video.bg-video {
     left: 0;
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: #24507b;
 }
+
+.btnLogin {
+    background-color: #24507b;
+    box-shadow: 3px 3px 3px black;
+}
+
 .masthead .masthead-content {
     position: relative;
     max-width: 40rem;

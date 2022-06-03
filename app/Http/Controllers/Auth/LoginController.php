@@ -48,12 +48,7 @@ class LoginController extends Controller
         ]);
 
         if(auth()->attempt(array('email' => $input['email'],'password' => $input['password']))){
-            if(auth()->user()->roles_id == 1){
-                return redirect()->route('admin.home');
-            }
-            else{
                 return redirect()->route('home');
-            }
         }
         else{
             $notification = array(
